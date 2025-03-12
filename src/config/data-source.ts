@@ -11,5 +11,8 @@ export const AppDataSource = new DataSource({
   logging: false,
   entities: ["src/models/*.ts"],
   migrations: ["src/migrations/*.ts"],
-  ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
+  ssl: process.env.DATABASE_URL && process.env.DATABASE_URL.includes("render.com")
+  ? { rejectUnauthorized: false }
+  : false,
+
 });
